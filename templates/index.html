@@ -4,13 +4,18 @@
         <title>Chinese Cemetery</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style type="text/css">
-            #header, #map {
+            #header, #map_container {
                 width:100%;
             }      
 
             #map_container {
-                height:700px;
+                height:900px;
             }
+            
+            BODY {
+                overflow:hidden;
+            }
+            
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
         <script type="text/javascript"
@@ -25,9 +30,14 @@
             var sectionListClass            =   "filterContainer";
             var sectionNameClass            =   "section_name";
             
-            var unhlighlightedPolygonOptions=   {
-                strokeWeight: 3,
-                fillColor: '#5555FF'
+            var unhighlightedPolygonOptions =   {
+                strokeWeight: 1,
+                fillColor: '#846FD7'
+            };
+            
+            var highlightedPolygonOptions    =   {
+                strokeWeight: 1,
+                fillColor: '#6549D7'
             };
             
             var map;
@@ -37,10 +47,18 @@
             var sectionsCoords = null;
             
             function initialize() {
+                
                 var myOptions = {
                     zoom: 20,
                     center: new google.maps.LatLng(17.99350925818833,-76.81241512298584),
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    styles : [
+                        {
+                            stylers: [
+                                { visibility: "off" }
+                            ]
+                        }
+                    ]
                 };
                 map = new google.maps.Map(document.getElementById(mapContainerId),
                 myOptions);
@@ -70,6 +88,13 @@
                 });
                 
                 // setup the filter container
+                $("." + sectionListClass + " ." + sectionClass + " ." + sectionNameClass).hover(function(){
+                    var sectionName = $(this).val();
+                    highlightSectionByName(sectionName);
+                }, function(){
+                    var sectionName = $(this).val();
+                    unhighlightSectionByName(sectionName);
+                });
                 $("." + sectionListClass + " ." + sectionClass + " ." + sectionNameClass).each(function(){
                     var sectionName = $(this).val();
                     var clicked = (function(){
@@ -113,7 +138,34 @@
                     }
                     poly.setMap(map);
                     sectionPolygonsByName[sectionName] = poly;
+                    google.maps.event.addListener(poly,"mouseover",(function(){
+                        var _sectionName = sectionName;
+                        return function(){
+                            highlightSectionByName(_sectionName);
+                        }
+                    })(sectionName));
+                    
+                    google.maps.event.addListener(poly,"mouseout",(function(){
+                        var _sectionName = sectionName;
+                        return function(){
+                            unhighlightSectionByName(_sectionName);
+                        }
+                    })(sectionName));
                 }
+            }
+            
+            function highlightSectionByName(sectionName){
+                sectionPolygon = getSectionPolygonByName(sectionName);
+                sectionPolygon.setOptions(highlightedPolygonOptions);
+            }
+            
+            function unhighlightSectionByName(sectionName){
+                sectionPolygon = getSectionPolygonByName(sectionName);
+                sectionPolygon.setOptions(unhighlightedPolygonOptions);
+            }
+            
+            function getSectionPolygonByName(sectionName){
+                return sectionPolygonsByName[sectionName];
             }
             
             function getGravesBySectionName(sectionName){
@@ -276,7 +328,6 @@
                 context.stroke();
 
                 return canvas.toDataURL();
-
             }
 
 

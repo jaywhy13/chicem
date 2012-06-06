@@ -36,7 +36,14 @@ class Grave(models.Model):
         if dt:
             return dt
         return None
-            
+
+    def get_year_of_death(self):
+        dod = self.get_deceased_date()
+        if dod:
+            return dod.strftime("%Y")
+        return None
+
+
     def get_birth_date(self):
         if self.died and self.age:
             dt = parser.parse(self.died)
@@ -112,6 +119,9 @@ class CemeteryBoundary(models.Model):
     hectares = models.FloatField()
     geom = models.MultiPolygonField(srid=4326)
     objects = models.GeoManager()
+
+    def grave_count(self):
+        return Grave.objects.filter(geom__contained=self.geom).count()
 
 # Auto-generated `LayerMapping` dictionary for CemeteryBoundary model
 cemeteryboundary_mapping = {

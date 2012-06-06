@@ -1,0 +1,13 @@
+<? xml version="1.0" ?>
+<map map_file="{{ swf_location }}" zoom="92.0238%" zoom_x="13.06%" zoom_y="3.81%">
+  <areas>
+    {% for boundary in boundaries %}
+    <area mc_name="{{ boundary.id }}"  title="{{ boundary.section}}">
+    {% endfor %}
+  </areas>
+  <movies>
+    {% for grave in graves %}
+    <movie file="target" title="{{ grave.name }}" lat="{{ grave.geom.centroid.y}}" lon="{{ grave.geom.centroid.x }}" width="10" height="10" fixed_size="true" zoom="500%"/>
+    {% endfor %}
+  </movies>
+</map>

@@ -118,6 +118,13 @@
                     sectionsCoords = eval(data);
                     drawSections();
                 });
+                
+                loadSections();
+            }
+            
+            
+            function loadSections(){
+                $("." + sectionListClass).load("/graves/sections");
             }
             
             

@@ -1,8 +1,13 @@
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>Chinese Cemetery</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="{{ STATIC_PREFIX }}js/jquery-1.7.2.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_PREFIX }}css/main.css" />
         <style type="text/css">
             #header, #map_container {
                 width:100%;
@@ -58,7 +63,8 @@
                                 { visibility: "off" }
                             ]
                         }
-                    ]
+                    ],
+                    mapTypeControl: false
                 };
                 map = new google.maps.Map(document.getElementById(mapContainerId),
                 myOptions);
@@ -340,19 +346,107 @@
 
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
+
+        <script type="text/javascript">
+            // Backend logic for the toolbar buttons
+            var activeButtonId = "";
+            $(document).ready(function() {
+                // hide the sidebar
+                $("#sidebar").hide(1);
+                // setup buttons
+                var searchButton = $("#searchButton");
+                searchButton.hover(
+                    function() {
+                        searchButton.addClass("button_hover");    
+                    },
+                    function() {
+                        searchButton.removeClass("button_hover");   
+                    }
+                );
+
+                searchButton.click(function() {
+                    // show the search window and give it focus
+                    if (activeButtonId != "searchButton") {
+                        showSideBar();
+                        searchButton.addClass("button_active");
+                        filterButton.removeClass("button_active");
+                        activeButtonId = "searchButton";
+                    } else {
+                        // deactivate the search here
+                        hideSideBar();
+                        searchButton.removeClass("button_active");
+                        activeButtonId = "";
+                    }
+                    
+                });
+
+                // filter button:
+                var filterButton = $("#filterButton");
+                filterButton.hover(
+                    function() {
+                        filterButton.addClass("button_hover");    
+                    },
+                    function() {
+                        filterButton.removeClass("button_hover");   
+                    }
+                );
+
+                filterButton.click(function() {
+                    // show the search window and give it focus
+                    if (activeButtonId != "filterButton") {
+                        showSideBar();
+                        filterButton.addClass("button_active");
+                        searchButton.removeClass("button_active");
+                        activeButtonId = "filterButton";
+                    } else {
+                        // deactivate the search here
+                        hideSideBar();
+                        filterButton.removeClass("button_active");
+                        activeButtonId = "";
+                    }
+                    
+                });
+            });
+
+            function hideSideBar() {
+                var sidebar = $("#sidebar");
+                sidebar.hide('fast');
+            }
+
+            function showSideBar() {
+                $("#sidebar").show('fast');
+                // console.log("focus on the query field");
+                $(".query").focus();
+            }
+
+        </script>
     </head>
 
     <body>
         <div id="header">
-            Header here
-        </div>
-        <div id="map_container">
-            Map here
+            <img src="{{ STATIC_PREFIX }}mgi_combined_logos.png" class="logoImg">
+            <img id="toolbarDividerImg" src="{{ STATIC_PREFIX }}toolbar_divider.png">
+            <img id="titleImg" src="{{ STATIC_PREFIX }}title_address.png">
 
-
+            <div id="searchButton" class="button_normal"></div>
+            <div id="filterButton" class="button_normal"></div>
         </div>
+        <div id="map_container">Map here</div>
         <div id="sidebar">
-
+            <div class="searchContainer">
+                <center>
+                    <span>
+                        <input class="query">
+                        {# <img id="clearSearchButton" src="{{ STATIC_PREFIX }}clear.png"> #}
+                    </span>
+                </center>
+                <center><img id="searchContainerDivider" src="{{ STATIC_PREFIX }}sidebar_divider.png"></center>
+                <div class="search_results"></div>
+            </div>
+            <div class="filterContainer">
+                <center>Sections</center>
+                <center><img id="searchContainerDivider" src="{{ STATIC_PREFIX }}sidebar_divider.png"></center>
+            </div>            
         </div>
     </body>
 </html>

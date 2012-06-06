@@ -110,7 +110,7 @@
             
             
             function loadSections(){
-                $("." + sectionListClass).load("/graves/sections",function(){
+                $("." + sectionListClass).load("graves/sections",function(){
                     // setup the filter container
                     $("." + sectionListClass + " ." + sectionClass).hover(function(){
                         var sectionName = $(this).children("." + sectionNameClass).html();

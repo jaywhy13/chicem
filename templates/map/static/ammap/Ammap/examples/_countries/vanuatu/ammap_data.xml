@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/vanuatu.swf" tl_long="166.541110" tl_lat="-13.072196" br_long="170.240568" br_lat="-20.253600" zoom="100%" zoom_x="147.59%" zoom_y="3.7%">
+  <areas>
+    <area mc_name="VU_ML" title="Malampa"></area>
+    <area mc_name="VU_PM" title="Pénama"></area>
+    <area mc_name="VU_SN" title="Sanma"></area>
+    <area mc_name="VU_SE" title="Shéfa"></area>
+    <area mc_name="VU_TF" title="Taféa"></area>
+    <area mc_name="VU_TR" title="Torba"></area>
+    <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+    <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+  </areas>
+
+  <movies>
+    <movie title="Port Vila" file="target" color="#CC0000" height="10" width="10" lat="-17.734298885590878" long="168.321623057127" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="787" y="205" text_size="18" color="#FFFFFF" remain="false">
+      <text>Vanuatu</text>
+    </label>
+  </labels>
+</map>

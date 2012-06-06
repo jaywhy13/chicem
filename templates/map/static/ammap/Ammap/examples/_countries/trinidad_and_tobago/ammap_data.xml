@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/trinidad_and_tobago.swf" tl_long="43.219318" tl_lat="-11.951280" br_long="50.587530" br_lat="-25.606417" zoom="90%" zoom_x="33.04%" zoom_y="6.23%">
+  <areas>
+    <area mc_name="TT_AR" title="Arima"></area>
+    <area mc_name="TT_CH" title="Chaguanas"></area>
+    <area mc_name="TT_CT" title="Couva-Tabaquite-Talparo"></area>
+    <area mc_name="TT_DM" title="Diego Martin"></area>
+    <area mc_name="TT_MR" title="Mayaro-Rio Claro"></area>
+    <area mc_name="TT_PD" title="Penal-Debe"></area>
+    <area mc_name="TT_PF" title="Point Fortin"></area>
+    <area mc_name="TT_PS" title="Port of Spain"></area>
+    <area mc_name="TT_PT" title="Princes Town"></area>
+    <area mc_name="TT_SF" title="San Fernando"></area>
+    <area mc_name="TT_SN" title="Sangre Grande"></area>
+    <area mc_name="TT_SL" title="San Juan-Laventille"></area>
+    <area mc_name="TT_SI" title="Siparia"></area>
+    <area mc_name="TT_TP" title="Tunapuna-Piarco"></area>
+    <area mc_name="TT_WT" title="Western Tobago"></area>
+    <area mc_name="TT_ET" title="Eastern Tobago"></area>
+    <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+    <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+  </areas>
+
+  <movies>
+    <movie title="Port of Spain" file="target" color="#CC0000" height="10" width="10" lat="10.66334929252651" long="-61.520090103149414" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="827" y="229" text_size="18" color="#FFFFFF" remain="false">
+      <text>Trinidad and Tobago</text>
+    </label>
+  </labels>
+</map>

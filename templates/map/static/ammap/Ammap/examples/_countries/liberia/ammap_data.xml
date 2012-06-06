@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/liberia.swf" tl_long="-11.486767" tl_lat="8.552003" br_long="-7.364729" br_lat="4.352486" zoom="90%" zoom_x="28.69%" zoom_y="5.16%">
+  <areas>
+      <area mc_name="LR_BM" title="Bomi"></area>
+      <area mc_name="LR_BG" title="Bong"></area>
+      <area mc_name="LR_GP" title="Gbarpolu"></area>
+      <area mc_name="LR_GB" title="Grand Bassa"></area>
+      <area mc_name="LR_CM" title="Grand Cape Mount"></area>
+      <area mc_name="LR_GD" title="Grand Gedeh"></area>
+      <area mc_name="LR_GK" title="Grand Kru"></area>
+      <area mc_name="LR_LF" title="Lofa"></area>
+      <area mc_name="LR_MG" title="Margibi"></area>
+      <area mc_name="LR_MY" title="Maryland"></area>
+      <area mc_name="LR_MO" title="Montserrado"></area>
+      <area mc_name="LR_NI" title="Nimba"></area>
+      <area mc_name="LR_RI" title="Rivercess"></area>
+      <area mc_name="LR_RG" title="River Gee"></area>
+      <area mc_name="LR_SI" title="Sinoe"></area>
+      <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+      <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+  </areas>
+
+  <movies>
+    <movie title="Monrovia" file="target" color="#CC0000" height="10" width="10" lat="6.314932" long="-10.804885" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="547" y="70" text_size="18" color="#FFFFFF" remain="false">
+      <text>Liberia</text>
+    </label>
+  </labels>
+</map>

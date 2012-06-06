@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/senegal.swf" tl_long="-17.523670" tl_lat="16.691991" br_long="-11.355419" br_lat="12.306651" zoom="90%" zoom_x="11.12%" zoom_y="3.61%">
+  <areas>
+      <area mc_name="SN_DK" title="Dakar"></area>
+      <area mc_name="SN_DB" title="Diourbel"></area>
+      <area mc_name="SN_FK" title="Fatick"></area>
+      <area mc_name="SN_KF" title="Kaffrine"></area>
+      <area mc_name="SN_KC" title="Kaolack"></area>
+      <area mc_name="SN_KG" title="Kédougou"></area>
+      <area mc_name="SN_KO" title="Kolda"></area>
+      <area mc_name="SN_LG" title="Louga"></area>
+      <area mc_name="SN_MT" title="Matam"></area>
+      <area mc_name="SN_ST" title="Saint-Louis"></area>
+      <area mc_name="SN_SD" title="Sédhiou"></area>
+      <area mc_name="SN_TB" title="Tambacounda"></area>
+      <area mc_name="SN_TH" title="Thiès"></area>
+      <area mc_name="SN_ZG" title="Ziguinchor"></area>
+      <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+      <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+  </areas>
+
+  <movies>
+    <movie title="Dakar" file="target" color="#CC0000" height="10" width="10" lat="14.699954" long="-17.457403" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="792" y="154" text_size="18" color="#FFFFFF" remain="false">
+      <text>Senegal</text>
+    </label>
+  </labels>
+</map>

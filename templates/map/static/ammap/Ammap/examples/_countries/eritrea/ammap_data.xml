@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/eritrea.swf" tl_long="36.438424" tl_lat="18.007627" br_long="43.138493" br_lat="12.356373" zoom="90%" zoom_x="46.72%" zoom_y="3.17%">
+  <areas>
+        <area mc_name="ER_AN" title="Anseba"></area>
+        <area mc_name="ER_DU" title="Debub"></area>
+        <area mc_name="ER_DK" title="Debubawi Keyih Bahri"></area>
+        <area mc_name="ER_GB" title="Gash Barka"></area>
+        <area mc_name="ER_MA" title="Maekel"></area>
+        <area mc_name="ER_SK" title="Semenawi Keyih Bahri"></area>
+        <area mc_name="borders_inside"  title="borders" color="#FFFFFF" balloon="false"></area>
+        <area mc_name="borders_outside" title="borders" color="#FFFFFF" balloon="false" alpha="0"></area>
+  </areas>
+  <movies>
+    <movie title="Asmara" file="target" color="#CC0000" height="10" width="10" lat="15.33299" long="38.920471" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="293" y="346" text_size="18" color="#FFFFFF" remain="false">
+      <text>Eritrea</text>
+    </label>
+  </labels>
+</map>

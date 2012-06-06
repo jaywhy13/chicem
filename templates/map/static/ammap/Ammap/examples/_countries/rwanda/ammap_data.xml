@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/rwanda.swf" tl_long="28.856324" tl_lat="-1.044881" br_long="30.896428" br_lat="-2.839953" zoom="90%" zoom_x="36.94%" zoom_y="3.72%">
+  <areas>
+        <area mc_name="RW_ES" title="Eastern Province"></area>
+        <area mc_name="RW_KV" title="Kigali Province"></area>
+        <area mc_name="RW_NO" title="Northern Province"></area>
+        <area mc_name="RW_SU" title="Southern Province"></area>
+        <area mc_name="RW_OU" title="Western Province"></area>
+        <area mc_name="RW_LKK" title="Lake Kivu &#60;br/&#62;(Rwanda's portion)" color="#0098FF" balloon="true"></area>
+        <area mc_name="borders_lake"  title="Lake Kivu border" color="#0066FF" balloon="false"></area>
+        <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+        <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+  </areas>
+  <movies>
+    <movie title="Kigali" file="target" color="#CC0000" height="10" width="10" lat="-1.9501" long="30.058769" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="293" y="346" text_size="18" color="#FFFFFF" remain="false">
+      <text>Rwanda</text>
+    </label>
+  </labels>
+</map>

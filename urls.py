@@ -7,6 +7,7 @@ from django.conf.urls.defaults import patterns, include, url
 urlpatterns = patterns('',
     url(r'^$', 'chicem.views.home', name='home'),
     url(r'^graves/', include('chicem.graves.urls')),
+    url(r'^map/', 'chicem.views.map', name='map'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

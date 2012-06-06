@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/brunei_darussalam.swf" tl_long="114.121199" tl_lat="5.044270" br_long="115.370668" br_lat="4.021968" zoom="90%" zoom_x="28.69%" zoom_y="5.16%">
+  <areas>
+    <area mc_name="BN_BE" title="Belait"></area>
+    <area mc_name="BN_BM" title="Brunei and Muara"></area>
+    <area mc_name="BN_TE" title="Temburong"></area>
+    <area mc_name="BN_TU" title="Tutong"></area>
+    <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+    <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+  </areas>
+
+  <movies>
+    <movie title="Bandar Seri Begawan" file="target" color="#CC0000" height="10" width="10" lat="4.89034" long="114.942459" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="800" y="532" text_size="18" color="#FFFFFF" remain="false">
+      <text>Brunei Darussalam</text>
+    </label>
+  </labels>
+</map>

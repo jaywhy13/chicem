@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/niger.swf" tl_long="0.0165038" tl_lat="23.526237" br_long="15.997258" br_lat="11.695277" zoom="90%" zoom_x="19.47%" zoom_y="3.97%">
+  <areas>
+        <area mc_name="NE_AG" title="Agadez"></area>
+        <area mc_name="NE_DF" title="Diffa"></area>
+        <area mc_name="NE_DS" title="Dosso"></area>
+        <area mc_name="NE_MA" title="Maradi"></area>
+        <area mc_name="NE_NI" title="Niamey"></area>
+        <area mc_name="NE_TH" title="Tahoua"></area>
+        <area mc_name="NE_TL" title="Tillabéri"></area>
+        <area mc_name="NE_ZI" title="Zinder"></area>
+        <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+        <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+  </areas>
+  <movies>
+    <movie title="Niamey" file="target" color="#CC0000" height="10" width="10" lat="13.512997355357857" long="2.1159879863262176" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="476" y="143" text_size="18" color="#FFFFFF" remain="false">
+      <text>Niger</text>
+    </label>
+  </labels>
+</map>

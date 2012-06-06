@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/tanzania.swf" tl_long="29.326319" tl_lat="-0.981796" br_long="40.444355" br_lat="-11.746539" zoom="90%" zoom_x="46.72%" zoom_y="3.17%">
+  <areas>
+    <area mc_name="TZ_AS" title="Arusha"></area>
+    <area mc_name="TZ_DS" title="Dar es Salaam"></area>
+    <area mc_name="TZ_DO" title="Dodoma"></area>
+    <area mc_name="TZ_IR" title="Iringa"></area>
+    <area mc_name="TZ_KR" title="Kagera"></area>
+    <area mc_name="TZ_KM" title="Kigoma"></area>
+    <area mc_name="TZ_KL" title="Kilimanjaro"></area>
+    <area mc_name="TZ_LI" title="Lindi"></area>
+    <area mc_name="TZ_MY" title="Manyara"></area>
+    <area mc_name="TZ_MA" title="Mara"></area>
+    <area mc_name="TZ_MB" title="Mbeya"></area>
+    <area mc_name="TZ_MO" title="Morogoro"></area>
+    <area mc_name="TZ_MT" title="Mtwara"></area>
+    <area mc_name="TZ_MW" title="Mwanza"></area>
+    <area mc_name="TZ_PN" title="Pemba North"></area>
+    <area mc_name="TZ_PS" title="Pemba South"></area>
+    <area mc_name="TZ_PW" title="Pwani"></area>
+    <area mc_name="TZ_RK" title="Rukwa"></area>
+    <area mc_name="TZ_RV" title="Ruvuma"></area>
+    <area mc_name="TZ_SH" title="Shinyanga"></area>
+    <area mc_name="TZ_SD" title="Singida"></area>
+    <area mc_name="TZ_TB" title="Tabora"></area>
+    <area mc_name="TZ_TN" title="Tanga"></area>
+    <area mc_name="TZ_ZN" title="Zanzibar North"></area>
+    <area mc_name="TZ_ZS" title="Zanzibar South and Central"></area>
+    <area mc_name="TZ_ZW" title="Zanzibar West"></area>
+    <area mc_name="TZ_LKV" title="Lake Victoria" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="TZ_LKN" title="Lake Natron" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="TZ_LKMY" title="Lake Manyara" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="TZ_LKK" title="Lake Kitangiri" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="TZ_LKE" title="Lake Eyasi" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="TZ_LKB" title="Lake Burungi" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="TZ_LKR" title="Lake Rukwa" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="TZ_LKS" title="Lake Sulunga" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="TZ_LKT" title="Lake Tanganyika" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="TZ_LKMW" title="Lake Malawi" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="TZ_MR" title="Mtera Reservoir" color="#0098FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_LKV" title="Borders _Lake Victoria" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_LKN" title="Borders _Lake Natron" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_LKMY" title="Borders _Lake Manyara" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_LKK" title="Borders _Lake Kitangiri" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_LKE" title="Borders _Lake Eyasi" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_LKB" title="Borders _Lake Burungi" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_LKR" title="Borders _Lake Rukwa" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_LKS" title="Borders _Lake Sulunga" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_LKT" title="Borders _Lake Tanganyika" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_LKMW" title="Borders _Lake Malawi" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_MR" title="Borders _Mtera Reservoir" color="#0066FF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_inside"  title="borders" color="#FFFFFF" balloon="false"></area>
+    <area mc_name="borders_outside" title="borders" color="#FFFFFF" balloon="false" alpha="0"></area>
+  </areas>
+  <movies>
+    <movie title="Dodoma" file="target" color="#CC0000" height="10" width="10" lat="-6.173408986976464" long="35.74741289019585" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="293" y="346" text_size="18" color="#FFFFFF" remain="false">
+      <text>Tanzania</text>
+    </label>
+  </labels>
+</map>

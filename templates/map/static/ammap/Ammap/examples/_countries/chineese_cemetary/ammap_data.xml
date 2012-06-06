@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<map map_file="maps/flash_cemetary_test_2.swf" zoom="50%" zoom_x="9.52%" zoom_y="22.99%" tl_long="-76.816" tl_lat="17.816" br_long="-76.81" br_lat="17.992">
+<!-- <map map_file="maps/flash_cemetary_test_2.swf" tl_long="-78.369025" tl_lat="18.525093" br_long="-75.969816" br_lat="17.020347" zoom="90%" zoom_x="7.24%" zoom_y="21.38%"> -->
+  <areas>
+    <area mc_name="Section 1" title="Section 1"></area>
+    <area mc_name="Section 2" title="Section 2"></area>
+    <area mc_name="Section 3" title="Section 3"></area>
+    <area mc_name="Section 4" title="Section 4"></area>
+    <area mc_name="Free Section" title="Free Section"></area>
+    <area mc_name="New Special Section" title="New Special Section"></area>
+    <area mc_name="Yee San Tein A" title="Yee San Tein A"></area>
+  </areas>
+  
+  <movies>
+    <movie file="target" title="Andorra la Vella" lat="17.999718346772028" long="-76.81805849075317" width="10" height="10" fixed_size="true" zoom="500%"/>
+    <!-- <movie file="target" title="Andorra No Vella" lat="48.2092" long="16.3728" width="10" height="10" fixed_size="true" zoom="500%"/> -->
+    <movie file="target" title="Andorra No Vella" lat="60" long="16.3728" width="10" height="10" fixed_size="true" zoom="500%"/>
+    <movie file="target" title="Blah" lat="18.000121394268334" long="-76.8186753988266" width="10" height="10" fixed_size="true" zoom="500%"/>
+  </movies>
+   
+  <!-- <labels>
+    <label x="49.8193%" y="5.0392%" text_size="18" color="#FFFFFF" remain="false">
+      <text>Chinese Cemetary</text>
+    </label>
+  </labels> -->
+</map>

@@ -28,12 +28,15 @@ def data(request, format=None):
         for grave in graves:
             new_movie = {
                 'id': grave.id,
-                'zoomLevel': 500,  # not sure yet what this needs to be
+                # 'zoomLevel': 500,  # not sure yet what this needs to be
                 'title': grave.name,
                 'lat': grave.geom.centroid.y,
                 'lon': grave.geom.centroid.x,
+                'plot' : grave.plot,
+                'died' : grave.get_year_of_death(),
+                'section' : grave.section
             }
-            
+
             results['movies'].append(new_movie)
 
         json_data = json.dumps(results)
@@ -45,6 +48,27 @@ def data(request, format=None):
         swf_location = "ammap.swf"
         return render_to_response("graves/data.xml", locals())
 
+def sections(request):
+    sections = CemeteryBoundary.objects.all()
+    return render_to_response("graves/sections.html", locals())
+
+def sections_coords(request):
+    all_sections = CemeteryBoundary.objects.all()
+    sections = []
+    for section in all_sections:
+        coords = []
+        for (lon, lat) in section.geom.coords[0][0]:
+            coords.append((lat, lon))
+
+        section_obj = {
+            "section_name" : section.section,
+            "coords" : coords
+            }
+        sections.append(section_obj)
+    sections_json = json.dumps(sections)
+    return HttpResponse(sections_json)
+    
+
 
 def search(request, query):
     if query == '':
@@ -55,7 +79,9 @@ def search(request, query):
     except:
         graves = Grave.objects.filter(name__icontains=query)
 
-    if request.GET['format'] and request.GET['format'] == 'json':
+    format = request.GET.get('format', 'html')
+
+    if format is 'json':
         # do json stuff
         # print 'doing json stuff'
         results = []

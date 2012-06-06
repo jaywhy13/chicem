@@ -27,7 +27,7 @@ def data(request, format=None):
         graves = Grave.objects.all()
         for grave in graves:
             new_movie = {
-                'id': grave.id,
+                'id': grave.pk,
                 # 'zoomLevel': 500,  # not sure yet what this needs to be
                 'title': grave.name,
                 'lat': grave.geom.centroid.y,
@@ -89,7 +89,7 @@ def search(request, query):
             # print grave.id
             # print grave.get_life_duration()
             search_result = {
-                'id': grave.id,
+                'id': grave.pk,
                 'plot': grave.plot,
                 'name': grave.name,
                 'date': grave.get_life_duration(),

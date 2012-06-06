@@ -1,0 +1,24 @@
+# ignore compiled python files
+*.pyc
+*.py~
+*.py\#
+
+# ignore sublime text project files
+*.sublime-project
+*.sublime-workspace
+
+# ignore south migration folders
+migrations/
+/static/
+/apache/
+
+# ingore temp files
+*.*~
+.*~
+
+# ignore settings.py
+settings.py
+
+# ignore nohup files
+nohup.out
+errors

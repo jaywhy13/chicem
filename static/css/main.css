@@ -122,3 +122,18 @@ h1, h2, h3, h4, h5, h6, address {
 	margin-top: auto;
 	margin-bottom: auto;
 }
+
+.section { 
+    font-family: "Lucida Sans", "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+  padding:4px;
+  cursor:pointer;
+  background-color:#BABABA;
+  border:1px solid rgb(151,152,154);
+  margin:10px;
+  border-radius:4px;
+ }
+
+.section_name { 
+  font-size:16pt;
+ }
+

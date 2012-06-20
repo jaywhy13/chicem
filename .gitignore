@@ -9,7 +9,6 @@
 
 # ignore south migration folders
 migrations/
-/static/
 /apache/
 
 # ingore temp files

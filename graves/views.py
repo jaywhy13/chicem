@@ -27,6 +27,7 @@ def data(request, format=None):
         graves = Grave.objects.all()
         for grave in graves:
             new_movie = {
+                'id': grave.id,
                 'zoomLevel': 500,  # not sure yet what this needs to be
                 'title': grave.name,
                 'lat': grave.geom.centroid.y,
@@ -46,10 +47,31 @@ def data(request, format=None):
 
 
 def search(request, query):
+    if query == '':
+        return HttpResponse('[]', mimetype='application/json')
     try:
         plot_no = int(query)
         graves = Grave.objects.filter(plot__contains=plot_no)
     except:
         graves = Grave.objects.filter(name__icontains=query)
-    return render_to_response("graves/list.html", locals())
+
+    if request.GET['format'] and request.GET['format'] == 'json':
+        # do json stuff
+        # print 'doing json stuff'
+        results = []
+        for grave in graves:
+            # print grave.id
+            # print grave.get_life_duration()
+            search_result = {
+                'id': grave.id,
+                'plot': grave.plot,
+                'name': grave.name,
+                'date': grave.get_life_duration(),
+            }
+            results.append(search_result)
+
+        json_data = json.dumps(results)
+        return HttpResponse(json_data, mimetype='application/json')
+    else:
+        return render_to_response("graves/list.html", locals())
 

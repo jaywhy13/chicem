@@ -41,19 +41,26 @@ class Grave(models.Model):
         if self.died and self.age:
             dt = parser.parse(self.died)
             if dt:
-                birth_date = dt - timedelta(days=self.age * 356)
+                birth_date = dt - timedelta(days=int(self.age) * 356)
                 return birth_date
         return None
             
     def get_life_duration(self):
         birth_date = self.get_birth_date()
         deceased_date = self.get_deceased_date()
+        months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
         if birth_date:
-            birth_date_str = birth_date.strftime("%b %Y")
+            if birth_date.year >= 1900:
+                birth_date_str = birth_date.strftime("%b %Y")
+            else:
+                birth_date_str = "%s %s" % (months[birth_date.month - 1], birth_date.year)
 
         if deceased_date:
-            deceased_date_str = deceased_date.strftime("%b %Y")
+            if deceased_date.year >= 1900:
+                deceased_date_str = deceased_date.strftime("%b %Y")
+            else:
+                deceased_date_str = "%s %s" % (months[deceased_date.month - 1], deceased_date.year)
 
         if birth_date:
             return "%s - %s" % (birth_date_str, deceased_date_str)

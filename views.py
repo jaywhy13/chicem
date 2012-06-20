@@ -6,4 +6,4 @@ def home(request):
 
 
 def map(request):
-	return render_to_response('map/ChineseCemetery.html', locals())
+	return render_to_response('index.html', locals())

@@ -30,7 +30,7 @@
             var sectionListClass            =   "filterContainer";
             var sectionNameClass            =   "section_name";
             
-            var unhlighlightedPolygonOptions=   {
+            var unhighlightedPolygonOptions=   {
                 strokeWeight: 3,
                 fillColor: '#5555FF'
             };
@@ -310,6 +310,8 @@
                     // show the search window and give it focus
                     if (activeButtonId != "searchButton") {
                         showSideBar();
+                        $(".filterContainer").hide();
+                        $(".searchContainer").show();
                         searchButton.addClass("button_active");
                         filterButton.removeClass("button_active");
                         activeButtonId = "searchButton";
@@ -337,6 +339,8 @@
                     // show the search window and give it focus
                     if (activeButtonId != "filterButton") {
                         showSideBar();
+                        $(".searchContainer").hide();
+                        $(".filterContainer").show();
                         filterButton.addClass("button_active");
                         searchButton.removeClass("button_active");
                         activeButtonId = "filterButton";

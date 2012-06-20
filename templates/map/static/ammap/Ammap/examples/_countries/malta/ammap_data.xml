@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/malta.swf" tl_long="14.182890" tl_lat="36.082381" br_long="14.576552" br_lat="35.805678" zoom="90%" zoom_x="33.04%" zoom_y="6.23%">
+  <areas>
+    <area mc_name="MT_CE" title="Central Region"></area>
+    <area mc_name="MT_GO" title="Gozo Region"></area>
+    <area mc_name="MT_NO" title="Northern Region"></area>
+    <area mc_name="MT_SE" title="South Eastern Region"></area>
+    <area mc_name="MT_SO" title="Southern Region"></area>
+    <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+    <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+  </areas>
+
+  <movies>
+    <movie title="Valletta" file="target" color="#CC0000" height="10" width="10" lat="35.8978" long="14.5125" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="827" y="229" text_size="18" color="#FFFFFF" remain="false">
+      <text>Malta</text>
+    </label>
+  </labels>
+</map>

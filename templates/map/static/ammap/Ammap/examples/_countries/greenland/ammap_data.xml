@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/greenland.swf" tl_long="-73.045685" tl_lat="83.627815" br_long="-11.307113" br_lat="59.770627" zoom="90%" zoom_x="92.75%" zoom_y="6.53%">
+  <areas>
+       <area mc_name="GL_KU" title="Kujalleq"></area>
+       <area mc_name="GL_QS" title="Qaasuitsup"></area>
+       <area mc_name="GL_QT" title="Qeqqata"></area>
+       <area mc_name="GL_SE" title="Sermersooq"></area>
+       <area mc_name="GL_UO" title="Northeast Greenland National Park"></area>
+       <area mc_name="GL_TH" title="Thule AFB"></area>
+       <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+       <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+  </areas>
+  <movies>
+    <movie title="Nuuk" file="target" color="#CC0000" height="10" width="10" lat="64.181213" long="-51.72995" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="903" y="389" text_size="18" color="#FFFFFF" remain="false">
+      <text>Greenland</text>
+    </label>
+  </labels>
+</map>

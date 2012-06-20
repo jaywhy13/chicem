@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/algeria.swf" tl_long="-8.675499" tl_lat="37.091004" br_long="11.990542" br_lat="18.958746" zoom="90%" zoom_x="28.69%" zoom_y="5.16%">
+  <areas>
+    <area mc_name="DZ_AR" title="Adrar"></area>
+    <area mc_name="DZ_AD" title="Aïn Defla"></area>
+    <area mc_name="DZ_AT" title="Aïn Témouchent"></area>
+    <area mc_name="DZ_AL" title="Alger"></area>
+    <area mc_name="DZ_AN" title="Annaba"></area>
+    <area mc_name="DZ_BT" title="Batna"></area>
+    <area mc_name="DZ_BC" title="Béchar"></area>
+    <area mc_name="DZ_BJ" title="Béjaïa"></area>
+    <area mc_name="DZ_BS" title="Biskra"></area>
+    <area mc_name="DZ_BL" title="Blida"></area>
+    <area mc_name="DZ_BB" title="Bordj Bou Arréridj"></area>
+    <area mc_name="DZ_BU" title="Bouira"></area>
+    <area mc_name="DZ_BM" title="Boumerdès"></area>
+    <area mc_name="DZ_CH" title="Chlef"></area>
+    <area mc_name="DZ_CO" title="Constantine"></area>
+    <area mc_name="DZ_DJ" title="Djelfa"></area>
+    <area mc_name="DZ_EB" title="El Bayadh"></area>
+    <area mc_name="DZ_EO" title="El Oued"></area>
+    <area mc_name="DZ_ET" title="El Tarf"></area>
+    <area mc_name="DZ_GR" title="Ghardaïa"></area>
+    <area mc_name="DZ_GL" title="Guelma"></area>
+    <area mc_name="DZ_IL" title="Illizi"></area>
+    <area mc_name="DZ_JJ" title="Jijel"></area>
+    <area mc_name="DZ_KH" title="Khenchela"></area>
+    <area mc_name="DZ_LG" title="Laghouat"></area>
+    <area mc_name="DZ_MC" title="Mascara"></area>
+    <area mc_name="DZ_MD" title="Médéa"></area>
+    <area mc_name="DZ_ML" title="Mila"></area>
+    <area mc_name="DZ_MG" title="Mostaganem"></area>
+    <area mc_name="DZ_MS" title="M'Sila"></area>
+    <area mc_name="DZ_NA" title="Naama"></area>
+    <area mc_name="DZ_OR" title="Oran"></area>
+    <area mc_name="DZ_OG" title="Ouargla"></area>
+    <area mc_name="DZ_OB" title="Oum el Bouaghi"></area>
+    <area mc_name="DZ_RE" title="Relizane"></area>
+    <area mc_name="DZ_SD" title="Saïda"></area>
+    <area mc_name="DZ_SF" title="Sétif"></area>
+    <area mc_name="DZ_SB" title="Sidi Bel Abbès"></area>
+    <area mc_name="DZ_SK" title="Skikda"></area>
+    <area mc_name="DZ_SA" title="Souk Ahras"></area>
+    <area mc_name="DZ_TM" title="Tamanghasset"></area>
+    <area mc_name="DZ_TB" title="Tébessa"></area>
+    <area mc_name="DZ_TR" title="Tiaret"></area>
+    <area mc_name="DZ_TN" title="Tindouf"></area>
+    <area mc_name="DZ_TP" title="Tipaza"></area>
+    <area mc_name="DZ_TS" title="Tissemsilt"></area>
+    <area mc_name="DZ_TO" title="Tizi Ouzou"></area>
+    <area mc_name="DZ_TL" title="Tlemcen"></area>
+    <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+    <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+  </areas>
+
+  <movies>
+    <movie title="Algiers" file="target" color="#CC0000" height="10" width="10" lat="36.78056" long="3.03901" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="837" y="275" text_size="18" color="#FFFFFF" remain="false">
+      <text>Algeria</text>
+    </label>
+  </labels>
+</map>

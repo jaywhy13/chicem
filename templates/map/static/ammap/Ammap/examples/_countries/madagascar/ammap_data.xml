@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/madagascar.swf" tl_long="43.219318" tl_lat="-11.951280" br_long="50.587530" br_lat="-25.606417" zoom="90%" zoom_x="139.97%" zoom_y="2.54%">
+  <areas>
+    <area mc_name="MG_TM_AO" title="Alaotra Mangoro"></area>
+    <area mc_name="MG_FI_AM" title="Amoron'i Mania"></area>
+    <area mc_name="MG_AV_AG" title="Analamanga"></area>
+    <area mc_name="MG_TM_AN" title="Analanjirofo"></area>
+    <area mc_name="MG_TL_AD" title="Androy"></area>
+    <area mc_name="MG_TL_AY" title="Anosy"></area>
+    <area mc_name="MG_TL_AF" title="Atsimo-Andrefana"></area>
+    <area mc_name="MG_FI_AA" title="Atsimo-Atsinanana"></area>
+    <area mc_name="MG_TM_AI" title="Atsinanana"></area>
+    <area mc_name="MG_MA_BE" title="Betsiboka"></area>
+    <area mc_name="MG_MA_BO" title="Boeny"></area>
+    <area mc_name="MG_AV_BO" title="Bongolava"></area>
+    <area mc_name="MG_AS_DI" title="Diana"></area>
+    <area mc_name="MG_FI_HM" title="Haute Matsiatra"></area>
+    <area mc_name="MG_FI_HO" title="Ihorombe"></area>
+    <area mc_name="MG_AV_IT" title="Itasy"></area>
+    <area mc_name="MG_MA_ME" title="Melaky"></area>
+    <area mc_name="MG_TL_ME" title="Menabe"></area>
+    <area mc_name="MG_AS_SV" title="Sava"></area>
+    <area mc_name="MG_MA_SF" title="Sofia"></area>
+    <area mc_name="MG_AV_VA" title="Vakinankaratra"></area>
+    <area mc_name="MG_FI_VF" title="Vatovavy Fitovinany"></area>
+    <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+    <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+  </areas>
+
+  <movies>
+    <movie title="Antananarivo" file="target" color="#CC0000" height="10" width="10" lat="-18.91270118134299" long="47.52908706665039" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="838" y="380" text_size="18" color="#FFFFFF" remain="false">
+      <text>Madagascar</text>
+    </label>
+  </labels>
+</map>

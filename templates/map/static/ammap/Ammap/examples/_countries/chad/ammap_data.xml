@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/chad.swf" tl_long="13.472495" tl_lat="23.450974" br_long="24.001253" br_lat="7.439764" zoom="90%" zoom_x="87.77%" zoom_y="3.18%">
+  <areas>
+        <area mc_name="TD_BG" title="Barh el Ghazel"></area>
+        <area mc_name="TD_BA" title="Batha"></area>
+        <area mc_name="TD_BR" title="Borkou"></area>
+        <area mc_name="TD_CG" title="Chari-Baguirmi"></area>
+        <area mc_name="TD_EN" title="Ennedi"></area>
+        <area mc_name="TD_GR" title="Guéra"></area>
+        <area mc_name="TD_HD" title="Hadjer-Lamis"></area>
+        <area mc_name="TD_KM" title="Kanem"></area>
+        <area mc_name="TD_LC" title="Lac"></area>
+        <area mc_name="TD_LO" title="Logone Occidental"></area>
+        <area mc_name="TD_LR" title="Logone Oriental"></area>
+        <area mc_name="TD_MA" title="Mandoul"></area>
+        <area mc_name="TD_ME" title="Mayo-Kebbi Est"></area>
+        <area mc_name="TD_MW" title="Mayo-Kebbi Ouest"></area>
+        <area mc_name="TD_MO" title="Moyen-Chari"></area>
+        <area mc_name="TD_OA" title="Ouaddaï"></area>
+        <area mc_name="TD_SA" title="Salamat"></area>
+        <area mc_name="TD_SI" title="Sila"></area>
+        <area mc_name="TD_TA" title="Tandjilé"></area>
+        <area mc_name="TD_TI" title="Tibesti"></area>
+        <area mc_name="TD_NJ" title="Ville de N'Djamena"></area>
+        <area mc_name="TD_BI" title="Wadi Fira"></area>
+        <area mc_name="TD_LKC" title="Lake Chad &#60;br/&#62;(Chad portion)" color="#0098FF" balloon="false"></area>
+        <area mc_name="borders_lake"  title="Lake Chad border" color="#0066FF" balloon="false"></area>
+        <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+        <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+  </areas>
+  <movies>
+    <movie title="N'Djamena" file="target" color="#CC0000" height="10" width="10" lat="12.10411658191874" long="15.0444" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="876" y="170" text_size="18" color="#FFFFFF" remain="false">
+      <text>Chad</text>
+    </label>
+  </labels>
+</map>

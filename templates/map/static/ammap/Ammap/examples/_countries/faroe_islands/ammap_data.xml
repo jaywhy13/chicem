@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/faroe_islands.swf" tl_long="-7.678453" tl_lat="62.396364" br_long="-6.244681" br_lat="61.397157" zoom="90%" zoom_x="80.46%" zoom_y="5.94%">
+  <areas>
+    <area mc_name="FO_NO" title="Norderøerne"></area>
+    <area mc_name="FO_OS" title="Østerø"></area>
+    <area mc_name="FO_SA" title="Sandø"></area>
+    <area mc_name="FO_ST" title="Strømø"></area>
+    <area mc_name="FO_SU" title="Suderø"></area>
+    <area mc_name="FO_VG" title="Vågø"></area>
+    <area title="borders" mc_name="borders" color="#FFFFFF" balloon="false" alpha="0"></area>
+  </areas>
+
+  <movies>
+    <movie title="Tórshavn" file="target" color="#CC0000" height="10" width="10" lat="62.02084365128519" long="-6.770753860473633" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="827" y="229" text_size="18" color="#FFFFFF" remain="false">
+      <text>Faroe Islands</text>
+    </label>
+  </labels>
+</map>

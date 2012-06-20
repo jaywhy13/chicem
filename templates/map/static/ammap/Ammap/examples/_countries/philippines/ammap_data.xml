@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/philippines.swf" tl_long="116.927573" tl_lat="20.836995" br_long="126.606119" br_lat="4.641156" zoom="100%" zoom_x="108.69%" zoom_y="-0.73%">
+  <areas>
+    <area mc_name="PH_AB" title="Abra"></area>
+    <area mc_name="PH_AN" title="Agusan del Norte"></area>
+    <area mc_name="PH_AS" title="Agusan del Sur"></area>
+    <area mc_name="PH_AK" title="Aklan"></area>
+    <area mc_name="PH_AL" title="Albay"></area>
+    <area mc_name="PH_AQ" title="Antique"></area>
+    <area mc_name="PH_AP" title="Apayao"></area>
+    <area mc_name="PH_AU" title="Aurora"></area>
+    <area mc_name="PH_BS" title="Basilan"></area>
+    <area mc_name="PH_BA" title="Bataan"></area>
+    <area mc_name="PH_BN" title="Batanes"></area>
+    <area mc_name="PH_BT" title="Batangas"></area>
+    <area mc_name="PH_BG" title="Benguet"></area>
+    <area mc_name="PH_BI" title="Biliran"></area>
+    <area mc_name="PH_BO" title="Bohol"></area>
+    <area mc_name="PH_BK" title="Bukidnon"></area>
+    <area mc_name="PH_BU" title="Bulacan"></area>
+    <area mc_name="PH_CG" title="Cagayan"></area>
+    <area mc_name="PH_CN" title="Camarines Norte"></area>
+    <area mc_name="PH_CS" title="Camarines Sur"></area>
+    <area mc_name="PH_CM" title="Camiguin"></area>
+    <area mc_name="PH_CP" title="Capiz"></area>
+    <area mc_name="PH_CT" title="Catanduanes"></area>
+    <area mc_name="PH_CV" title="Cavite"></area>
+    <area mc_name="PH_CB" title="Cebu"></area>
+    <area mc_name="PH_CL" title="Compostela Valley"></area>
+    <area mc_name="PH_NC" title="Cotabato"></area>
+    <area mc_name="PH_DV" title="Davao del Norte"></area>
+    <area mc_name="PH_DS" title="Davao del Sur"></area>
+    <area mc_name="PH_DO" title="Davao Oriental"></area>
+    <area mc_name="PH_DI" title="Dinagat Islands"></area>
+    <area mc_name="PH_ES" title="Eastern Samar"></area>
+    <area mc_name="PH_GU" title="Guimaras"></area>
+    <area mc_name="PH_IF" title="Ifugao"></area>
+    <area mc_name="PH_IN" title="Ilocos Norte"></area>
+    <area mc_name="PH_IS" title="Ilocos Sur"></area>
+    <area mc_name="PH_II" title="Iloilo"></area>
+    <area mc_name="PH_IB" title="Isabela"></area>
+    <area mc_name="PH_KA" title="Kalinga"></area>
+    <area mc_name="PH_LG" title="Laguna"></area>
+    <area mc_name="PH_LN" title="Lanao del Norte"></area>
+    <area mc_name="PH_LS" title="Lanao del Sur"></area>
+    <area mc_name="PH_LU" title="La Union"></area>
+    <area mc_name="PH_LE" title="Leyte"></area>
+    <area mc_name="PH_MG" title="Maguindanao"></area>
+    <area mc_name="PH_MQ" title="Marinduque"></area>
+    <area mc_name="PH_MB" title="Masbate"></area>
+    <area mc_name="PH_MM" title="Metropolitan Manila"></area>
+    <area mc_name="PH_MD" title="Misamis Occidental"></area>
+    <area mc_name="PH_MN" title="Misamis Oriental"></area>
+    <area mc_name="PH_MT" title="Mountain"></area>
+    <area mc_name="PH_ND" title="Negros Occidental"></area>
+    <area mc_name="PH_NR" title="Negros Oriental"></area>
+    <area mc_name="PH_NS" title="Northern Samar"></area>
+    <area mc_name="PH_NE" title="Nueva Ecija"></area>
+    <area mc_name="PH_NV" title="Nueva Vizcaya"></area>
+    <area mc_name="PH_MC" title="Occidental Mindoro"></area>
+    <area mc_name="PH_MR" title="Oriental Mindoro"></area>
+    <area mc_name="PH_PL" title="Palawan"></area>
+    <area mc_name="PH_PM" title="Pampanga"></area>
+    <area mc_name="PH_PN" title="Pangasinan"></area>
+    <area mc_name="PH_QZ" title="Quezon"></area>
+    <area mc_name="PH_QR" title="Quirino"></area>
+    <area mc_name="PH_RI" title="Rizal"></area>
+    <area mc_name="PH_RO" title="Romblon"></area>
+    <area mc_name="PH_SM" title="Samar"></area>
+    <area mc_name="PH_SG" title="Sarangani"></area>
+    <area mc_name="PH_SQ" title="Siquijor"></area>
+    <area mc_name="PH_SR" title="Sorsogon"></area>
+    <area mc_name="PH_SC" title="South Cotabato"></area>
+    <area mc_name="PH_SL" title="Southern Leyte"></area>
+    <area mc_name="PH_SK" title="Sultan Kudarat"></area>
+    <area mc_name="PH_SU" title="Sulu"></area>
+    <area mc_name="PH_ST" title="Surigao del Norte"></area>
+    <area mc_name="PH_SS" title="Surigao del Sur"></area>
+    <area mc_name="PH_TR" title="Tarlac"></area>
+    <area mc_name="PH_TT" title="Tawi-Tawi"></area>
+    <area mc_name="PH_ZM" title="Zambales"></area>
+    <area mc_name="PH_ZN" title="Zamboanga del Norte"></area>
+    <area mc_name="PH_ZS" title="Zamboanga del Sur"></area>
+    <area mc_name="PH_ZY" title="Zamboanga-Sibugay"></area>
+    <area title="borders" mc_name="borders_inside" color="#FFFFFF" balloon="false"></area>
+    <area title="borders" mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+  </areas>
+  <movies>
+    <movie title="Manila" file="target" color="#CC0000" height="10" width="10" lat="14.60767108558596" long="121.00522443652153" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="876" y="170" text_size="18" color="#FFFFFF" remain="false">
+      <text>Philippines</text>
+    </label>
+  </labels>
+</map>

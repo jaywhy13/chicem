@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/timor_leste.swf" tl_long="123.455201" tl_lat="-8.126796" br_long="127.342697" br_lat="-10.370568" zoom="90%" zoom_x="5.24%" zoom_y="4.43%">
+  <areas>
+    <area mc_name="TL_AL" title="Aileu"></area>
+    <area mc_name="TL_AN" title="Ainaro"></area>
+    <area mc_name="TL_AM" title="Ambeno"></area>
+    <area mc_name="TL_BC" title="Baucau"></area>
+    <area mc_name="TL_BB" title="Bobonaro"></area>
+    <area mc_name="TL_CL" title="Cova Lima"></area>
+    <area mc_name="TL_DL" title="Dili"></area>
+    <area mc_name="TL_ER" title="Ermera"></area>
+    <area mc_name="TL_BT" title="Lautém"></area>
+    <area mc_name="TL_LQ" title="Liquiçá"></area>
+    <area mc_name="TL_MT" title="Manatuto"></area>
+    <area mc_name="TL_MF" title="Manufahi"></area>
+    <area mc_name="TL_VQ" title="Viqueque"></area>
+    <area mc_name="ID_NT" title="Nusa Tenggara Timur, Indonesia" color="#F15A24"></area>
+    <area mc_name="borders_inside"  color="#FFFFFF" balloon="false"></area>
+    <area mc_name="borders_outside" color="#FFFFFF" balloon="false" alpha="0"></area>
+    <area mc_name="borders_international"  color="#000000" balloon="false"></area>
+    <area mc_name="IDN_borders_outside"  color="#FFFFFF" balloon="false" alpha="0"></area>
+  </areas>
+  <movies>
+    <movie title="Dili" file="target" color="#CC0000" height="10" width="10" lat="-8.57069" long="125.580711" fixed_size="true"></movie>
+  </movies>
+
+  <labels>
+    <label x="258" y="272" text_size="18" color="#FFFFFF" remain="false">
+      <text>Timor-Leste</text>
+    </label>
+  </labels>
+</map>

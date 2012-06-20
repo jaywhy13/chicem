@@ -9,19 +9,24 @@
         <script type="text/javascript" src="{{ STATIC_PREFIX }}js/jquery-1.7.2.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{{ STATIC_PREFIX }}css/main.css" />
         <style type="text/css">
-            #header, #map {
+            #header, #map_container {
                 width:100%;
             }      
 
             #map_container {
-                height:700px;
             }
+
+            BODY {
+                overflow:hidden;
+            }
+
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
         <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript">
             var mapContainerId              =   "map_container";
+            var sideBarId                   =   "sidebar";
             var sectionClass                =   "section";
             var searchResultsClass          =   "search_results";
             var searchInputClass            =   "query";
@@ -30,9 +35,14 @@
             var sectionListClass            =   "filterContainer";
             var sectionNameClass            =   "section_name";
             
-            var unhighlightedPolygonOptions=   {
-                strokeWeight: 3,
-                fillColor: '#5555FF'
+            var unhighlightedPolygonOptions =   {
+                strokeWeight: 1,
+                fillColor: '#846FD7'
+            };
+            
+            var highlightedPolygonOptions    =   {
+                strokeWeight: 1,
+                fillColor: '#6549D7'
             };
             
             var map;
@@ -42,10 +52,23 @@
             var sectionsCoords = null;
             
             function initialize() {
+                var wHeight = $(window).height();
+                var hHeight = $("#header").height();
+                
+                $("#" + mapContainerId).height(wHeight-hHeight);
+                $("#" + sideBarId).height(wHeight-hHeight);
+                
                 var myOptions = {
                     zoom: 20,
                     center: new google.maps.LatLng(17.99350925818833,-76.81241512298584),
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    styles : [
+                        {
+                            stylers: [
+                                { visibility: "off" }
+                            ]
+                        }
+                    ],
                     mapTypeControl: false
                 };
                 map = new google.maps.Map(document.getElementById(mapContainerId),
@@ -75,30 +98,47 @@
                     stopSearchTimer();
                 });
                 
-                // setup the filter container
-                $("." + sectionListClass + " ." + sectionClass + " ." + sectionNameClass).each(function(){
-                    var sectionName = $(this).val();
-                    var clicked = (function(){
-                        var _sectionName = sectionName;
-                        return function(){
-                            hideGravesBySectionName(_sectionName);  
-                        };
-                    })(sectionName);
-                    
-                    var unclicked = (function(){
-                        var _sectionName = sectionName;
-                        return function(){
-                            showGravesBySectionName(_sectionName);  
-                        };
-                    })(sectionName);
-                    
-                    $(this).toggle(clicked, unclicked);
-                });
+                
                 
                 $.get("graves/sections_coords",function(data){
                     sectionsCoords = eval(data);
                     drawSections();
                 });
+                
+                loadSections();
+            }
+            
+            
+            function loadSections(){
+                $("." + sectionListClass).load("/graves/sections",function(){
+                    // setup the filter container
+                    $("." + sectionListClass + " ." + sectionClass).hover(function(){
+                        var sectionName = $(this).children("." + sectionNameClass).html();
+                        highlightSectionByName(sectionName);
+                    }, function(){
+                        var sectionName = $(this).children("." + sectionNameClass).html();
+                        unhighlightSectionByName(sectionName);
+                    });
+                    $("." + sectionListClass + " ." + sectionClass).each(function(){
+                        var sectionName = $(this).children("." + sectionNameClass).html();
+                        var clicked = (function(){
+                            var _sectionName = sectionName;
+                            return function(){
+                                hideGravesBySectionName(_sectionName);  
+                            };
+                        })(sectionName);
+                    
+                        var unclicked = (function(){
+                            var _sectionName = sectionName;
+                            return function(){
+                                showGravesBySectionName(_sectionName);  
+                            };
+                        })(sectionName);
+                    
+                        $(this).toggle(clicked, unclicked);
+                    });
+                });
+                
             }
             
             
@@ -119,7 +159,34 @@
                     }
                     poly.setMap(map);
                     sectionPolygonsByName[sectionName] = poly;
+                    google.maps.event.addListener(poly,"mouseover",(function(){
+                        var _sectionName = sectionName;
+                        return function(){
+                            highlightSectionByName(_sectionName);
+                        }
+                    })(sectionName));
+                    
+                    google.maps.event.addListener(poly,"mouseout",(function(){
+                        var _sectionName = sectionName;
+                        return function(){
+                            unhighlightSectionByName(_sectionName);
+                        }
+                    })(sectionName));
                 }
+            }
+            
+            function highlightSectionByName(sectionName){
+                sectionPolygon = getSectionPolygonByName(sectionName);
+                sectionPolygon.setOptions(highlightedPolygonOptions);
+            }
+            
+            function unhighlightSectionByName(sectionName){
+                sectionPolygon = getSectionPolygonByName(sectionName);
+                sectionPolygon.setOptions(unhighlightedPolygonOptions);
+            }
+            
+            function getSectionPolygonByName(sectionName){
+                return sectionPolygonsByName[sectionName];
             }
             
             function getGravesBySectionName(sectionName){
@@ -144,6 +211,7 @@
             
             
             function hideGravesBySectionName(sectionName){
+                console.log("Hiding all graves in " + sectionName);
                 mapGravesBySectionName(sectionName, function(grave){
                     grave.marker.setMap(null);
                 });
@@ -257,7 +325,7 @@
                     icon: createMarker(10,10,4 ,color)
                 });
                 return marker;
-            }
+            } 
             
             
             function createMarker(width, height, radius, color) {
@@ -282,7 +350,6 @@
                 context.stroke();
 
                 return canvas.toDataURL();
-
             }
 
 
@@ -298,13 +365,13 @@
                 // setup buttons
                 var searchButton = $("#searchButton");
                 searchButton.hover(
-                    function() {
-                        searchButton.addClass("button_hover");    
-                    },
-                    function() {
-                        searchButton.removeClass("button_hover");   
-                    }
-                );
+                function() {
+                    searchButton.addClass("button_hover");    
+                },
+                function() {
+                    searchButton.removeClass("button_hover");   
+                }
+            );
 
                 searchButton.click(function() {
                     // show the search window and give it focus
@@ -327,13 +394,13 @@
                 // filter button:
                 var filterButton = $("#filterButton");
                 filterButton.hover(
-                    function() {
-                        filterButton.addClass("button_hover");    
-                    },
-                    function() {
-                        filterButton.removeClass("button_hover");   
-                    }
-                );
+                function() {
+                    filterButton.addClass("button_hover");    
+                },
+                function() {
+                    filterButton.removeClass("button_hover");   
+                }
+            );
 
                 filterButton.click(function() {
                     // show the search window and give it focus

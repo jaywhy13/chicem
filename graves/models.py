@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import os
 
 class Grave(models.Model):
-    id = models.IntegerField(primary_key=True)
+    other_id = models.IntegerField(primary_key=True)
     ident = models.CharField(max_length=24)
     id_no = models.FloatField()
     id_no_1 = models.IntegerField()
@@ -92,7 +92,7 @@ grave_mapping = {
     'first_name' : 'First_Name',
     'surname' : 'Surname',
     'given_chin' : 'Given_Chin',
-    'id' : 'ID',
+    'other_id' : 'ID',
     'id_1' : 'ID_1',
     'maiden_nam' : 'Maiden_Nam',
     'died' : 'Died',
@@ -110,7 +110,7 @@ def load_graves(verbose=True):
 
 
 class CemeteryBoundary(models.Model):
-    id = models.IntegerField(primary_key=True)
+    other_id = models.IntegerField(primary_key=True)
     section = models.CharField(max_length=30)
     hotlink = models.CharField(max_length=100)
     area = models.FloatField()
@@ -125,7 +125,7 @@ class CemeteryBoundary(models.Model):
 
 # Auto-generated `LayerMapping` dictionary for CemeteryBoundary model
 cemeteryboundary_mapping = {
-    'id' : 'ID',
+    'other_id' : 'ID',
     'section' : 'SECTION',
     'hotlink' : 'HOTLINK',
     'area' : 'AREA',

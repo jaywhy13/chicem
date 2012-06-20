@@ -59,7 +59,7 @@
                 $("#" + sideBarId).height(wHeight-hHeight);
                 
                 var myOptions = {
-                    zoom: 20,
+                    zoom: 18,
                     center: new google.maps.LatLng(17.99350925818833,-76.81241512298584),
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     styles : [
@@ -100,7 +100,7 @@
                 
                 
                 
-                $.get("graves/sections_coords",function(data){
+                $.get("/chicem/graves/sections_coords",function(data){
                     sectionsCoords = eval(data);
                     drawSections();
                 });
@@ -110,7 +110,7 @@
             
             
             function loadSections(){
-                $("." + sectionListClass).load("/graves/sections",function(){
+                $("." + sectionListClass).load("/chicem/graves/sections",function(){
                     // setup the filter container
                     $("." + sectionListClass + " ." + sectionClass).hover(function(){
                         var sectionName = $(this).children("." + sectionNameClass).html();
@@ -255,7 +255,7 @@
             }
             
             function loadData(){
-                $.get("graves/data/json",function(data){
+                $.get("/chicem/graves/data/json",function(data){
                     graveData = {};
                     var obj = eval(data);
                     if(obj.movies){
@@ -311,7 +311,7 @@
                 }
 
                 if(query && query.length >= 1){
-                    var url = "graves/search/" + query + "?format=html";
+                    var url = "/chicem/graves/search/" + query + "?format=html";
                     $("." + searchResultsClass).load(url);
                 }
             }

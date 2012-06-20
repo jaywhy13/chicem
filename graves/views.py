@@ -9,7 +9,7 @@ def data(request, format=None):
     """ returns the data settings in XML for ammap (graves and areas)
     """
     if format == 'json':
-        print 'creating json version of data'
+        #print 'creating json version of data'
         # TODO: need to replace this with a template!
         results =  {
             'areas': [],

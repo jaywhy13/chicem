@@ -12,15 +12,35 @@
             #header, #map {
                 width:100%;
             }      
-            
-            /*#map {
+
+            #map_container {
                 height:700px;
-            }*/
+            }
         </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
         <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript">
+            var mapContainerId              =   "map_container";
+            var sectionClass                =   "section";
+            var searchResultsClass          =   "search_results";
+            var searchInputClass            =   "query";
+            var searchTimer                 =   null;
+            var searchDelay                 =   500;
+            var sectionListClass            =   "filterContainer";
+            var sectionNameClass            =   "section_name";
+            
+            var unhlighlightedPolygonOptions=   {
+                strokeWeight: 3,
+                fillColor: '#5555FF'
+            };
+            
             var map;
+            var graveData = {};
+            var gravesBySectionName = {};
+            var sectionPolygonsByName = {};
+            var sectionsCoords = null;
+            
             function initialize() {
                 var myOptions = {
                     zoom: 20,
@@ -28,9 +48,243 @@
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     mapTypeControl: false
                 };
-                map = new google.maps.Map(document.getElementById('map'),
+                map = new google.maps.Map(document.getElementById(mapContainerId),
                 myOptions);
+                loadData();
+                setupUI();
             }
+            
+            function startSearchTimer(){
+                stopSearchTimer();
+                searchTimer = window.setTimeout("search()",searchDelay);
+            }
+            
+            function stopSearchTimer(){
+                if(searchTimer){
+                    window.clearTimeout(searchTimer);
+                    searchTimer = null;
+                }
+            }
+            
+            function setupUI(){
+                // setup the search components
+                $("." + searchInputClass).keyup(function(){
+                    startSearchTimer();
+                });
+                $("." + searchInputClass).keydown(function(){
+                    stopSearchTimer();
+                });
+                
+                // setup the filter container
+                $("." + sectionListClass + " ." + sectionClass + " ." + sectionNameClass).each(function(){
+                    var sectionName = $(this).val();
+                    var clicked = (function(){
+                        var _sectionName = sectionName;
+                        return function(){
+                            hideGravesBySectionName(_sectionName);  
+                        };
+                    })(sectionName);
+                    
+                    var unclicked = (function(){
+                        var _sectionName = sectionName;
+                        return function(){
+                            showGravesBySectionName(_sectionName);  
+                        };
+                    })(sectionName);
+                    
+                    $(this).toggle(clicked, unclicked);
+                });
+                
+                $.get("graves/sections_coords",function(data){
+                    sectionsCoords = eval(data);
+                    drawSections();
+                });
+            }
+            
+            
+            function drawSections(){
+                for(var i = 0; i < sectionsCoords.length; i++){
+                    var sectionObj = sectionsCoords[i];
+                    var sectionName = sectionObj.section_name;
+                    var coords = sectionObj.coords;
+                    var poly = new google.maps.Polygon(unhighlightedPolygonOptions);
+                    var path = new google.maps.MVCArray;
+                    poly.setPaths(new google.maps.MVCArray([path]));
+                    for(var j = 0; j < coords.length; j++){
+                        var coord = coords[j];
+                        var lat = coord[0];
+                        var lon = coord[1];
+                        var ll = new google.maps.LatLng(lat,lon);
+                        path.insertAt(path.length, ll);
+                    }
+                    poly.setMap(map);
+                    sectionPolygonsByName[sectionName] = poly;
+                }
+            }
+            
+            function getGravesBySectionName(sectionName){
+                return gravesBySectionName[sectionName];
+            }
+            
+            function mapGravesBySection(f){
+                for(var sectionName in gravesBySectionName){
+                    mapGravesBySectionName(sectionName, function(grave){
+                        f(sectionName, grave);
+                    })
+                }
+            }
+            
+            function mapGravesBySectionName(sectionName, f){
+                var sectionGraves = getGravesBySectionName(sectionName);
+                for(var i = 0; i < sectionGraves.length; i++){
+                    var grave = sectionGraves[i];
+                    f(grave);
+                }
+            }
+            
+            
+            function hideGravesBySectionName(sectionName){
+                mapGravesBySectionName(sectionName, function(grave){
+                    grave.marker.setMap(null);
+                });
+            }
+            
+            function showGravesBySectionName(sectionName){
+                mapGravesBySectionName(sectionName, function(grave){
+                    grave.marker.setMap(map);
+                });
+            }
+            
+            function getGraveById(id){
+                return graveData[id];
+            }
+            
+            function zoomToGrave(grave){
+                if(!grave) return;
+                map.panTo(new google.maps.LatLng(grave.lat,grave.lon));
+                map.setZoom(22);
+            }
+            
+            function zoomToGraveById(id){
+                var grave = getGraveById(id);
+                zoomToGrave(grave);
+            }
+            
+            function graveClicked(grave){
+                alert(grave.id);
+            }
+            
+            function addGrave(grave){
+                var id = grave.id;
+                graveData[id] = grave;
+                var sectionGraves = new Array();
+                if(gravesBySectionName[grave.section]){
+                    sectionGraves = gravesBySectionName[grave.section];
+                }
+                
+                sectionGraves.push(grave);
+                gravesBySectionName[grave.section] = sectionGraves;
+            }
+            
+            function loadData(){
+                $.get("graves/data/json",function(data){
+                    graveData = {};
+                    var obj = eval(data);
+                    if(obj.movies){
+                        for(var i = 0; i < obj.movies.length; i++){
+                            var grave = obj.movies[i];
+                            var id = grave.id;
+                            var lat = grave.lat;
+                            var lng = grave.lon; 
+                            var title = grave.title;
+                            var died = grave.died;
+                            var color = getColor(died);
+                            var marker = addMarker(lat, lng, title, color);
+                            grave.marker = marker;
+                            google.maps.event.addListener(marker,"click",(function(){
+                                var _grave = grave;
+                                return function(){
+                                    graveClicked(_grave);
+                                }
+                            })(grave));
+                            addGrave(grave);
+                        }
+                    }
+                });
+            }
+            
+            var colorRanges = {
+                "2000" : "#A60000",
+                "1970" : "#FF5300",
+                "1940" : "#FFB440",
+                "1920" : "#FFD773"
+            };
+            
+            function getColor(died){
+                var color = "#CCCCCC";
+                if(died){
+                    for(var range in colorRanges){
+                        var _color = colorRanges[range];
+                        if(died >= range){
+                            color = _color;
+                            break;
+                        }
+                    }
+                }
+                return color;
+            }
+            
+            function search(searchQuery){
+                var query;
+                if(searchQuery != undefined){
+                    query = searchQuery;
+                } else {
+                    query = $("." + searchInputClass).val();
+                }
+
+                if(query && query.length >= 1){
+                    var url = "graves/search/" + query + "?format=html";
+                    $("." + searchResultsClass).load(url);
+                }
+            }
+            
+            function addMarker(lat, lng, title, color){
+                // creating a marker
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(lat,lng),
+                    map: map,
+                    title:title,
+                    icon: createMarker(10,10,4 ,color)
+                });
+                return marker;
+            }
+            
+            
+            function createMarker(width, height, radius, color) {
+
+                var canvas, context;
+
+                canvas = document.createElement("canvas");
+                canvas.width = width;
+                canvas.height = height;
+
+                context = canvas.getContext("2d");
+                var centerX = canvas.width / 2;
+                var centerY = canvas.height / 2;
+                var radius = radius;
+
+                context.beginPath();
+                context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                context.fillStyle = color;
+                context.fill();
+                context.lineWidth = 1;
+                context.strokeStyle = "black";
+                context.stroke();
+
+                return canvas.toDataURL();
+
+            }
+
 
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
@@ -119,7 +373,7 @@
             <div id="searchButton" class="button_normal"></div>
             <div id="filterButton" class="button_normal"></div>
         </div>
-        <div id="map">Map here</div>
+        <div id="map_container">Map here</div>
         <div id="sidebar">
             <div class="searchContainer">
                 <center>

@@ -117,7 +117,7 @@
             
             
             function loadSections(){
-                $("." + sectionListClass).load("graves/sections",function(){
+                $("." + sectionListClass).load("{{ SITE_URL }}graves/sections",function(){
                     // setup the filter container
                     $("." + sectionListClass + " ." + sectionClass).hover(function(){
                         var sectionName = $(this).children("." + sectionNameClass).html();
@@ -296,7 +296,7 @@
             }
             
             function loadData(){
-                $.get("graves/data/json",function(data){
+                $.get("{{ SITE_URL }}graves/data/json",function(data){
                     graveData = {};
                     var obj = eval(data);
                     if(obj.movies){

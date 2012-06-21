@@ -22,6 +22,7 @@
 
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="{{ STATIC_PREFIX }}js/infobubble-compiled.js"></script>
         <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript">
@@ -37,20 +38,26 @@
             
             var unhighlightedPolygonOptions =   {
                 strokeWeight: 1,
-                fillColor: '#846FD7'
+                // fillColor: '#846FD7'
+                fillColor: '#b8ce52',
+                strokeColor: '#fff',
+                fillOpacity: 1.0,
+                strokeOpacity: 0.5
             };
             
             var highlightedPolygonOptions    =   {
-                strokeWeight: 1,
-                fillColor: '#6549D7'
+                strokeWeight: 2,
+                strokeOpacity: 1.0,
+                fillColor: '#527ace'
             };
             
             var map;
-            var graveData = {};
-            var gravesBySectionName = {};
-            var sectionPolygonsByName = {};
-            var sectionsCoords = null;
-            
+            var graveData                   = {};
+            var gravesBySectionName         = {};
+            var sectionPolygonsByName       = {};
+            var sectionsCoords              = null;
+            var lastOpenInfoWindow          = null;
+
             function initialize() {
                 var wHeight = $(window).height();
                 var hHeight = $("#header").height();
@@ -100,7 +107,7 @@
                 
                 
                 
-                $.get("/chicem/graves/sections_coords",function(data){
+                $.get("graves/sections_coords",function(data){
                     sectionsCoords = eval(data);
                     drawSections();
                 });
@@ -110,14 +117,18 @@
             
             
             function loadSections(){
-                $("." + sectionListClass).load("/chicem/graves/sections",function(){
+                $("." + sectionListClass).load("graves/sections",function(){
                     // setup the filter container
                     $("." + sectionListClass + " ." + sectionClass).hover(function(){
                         var sectionName = $(this).children("." + sectionNameClass).html();
                         highlightSectionByName(sectionName);
+                        // need to highlight the ui for the section as well:
+                        $(this).addClass("ui_hover");
                     }, function(){
                         var sectionName = $(this).children("." + sectionNameClass).html();
                         unhighlightSectionByName(sectionName);
+                        // need to remove the highlight from the section ui:
+                        $(this).removeClass("ui_hover");
                     });
                     $("." + sectionListClass + " ." + sectionClass).each(function(){
                         var sectionName = $(this).children("." + sectionNameClass).html();
@@ -224,13 +235,18 @@
             }
             
             function getGraveById(id){
+                console.log("trying to get grave for id: " + id);
                 return graveData[id];
             }
             
             function zoomToGrave(grave){
-                if(!grave) return;
+                if(!grave) {
+                    console.log("not getting any grave! :(");
+                    return;   
+                } 
                 map.panTo(new google.maps.LatLng(grave.lat,grave.lon));
                 map.setZoom(22);
+                graveClicked(grave);
             }
             
             function zoomToGraveById(id){
@@ -239,7 +255,32 @@
             }
             
             function graveClicked(grave){
-                alert(grave.id);
+                console.log(grave);
+                // grave details
+                var personName = (grave.title == null || grave.title == "") ? "(Name unknown)" : grave.title;
+                var deathDate = (grave.date == null || grave.date == "") ? "(Date of death unknown)" : grave.date;
+                var sectionName = (grave.section == null || grave.section == "") ? "Unknown" : grave.section;
+                var plotNumber = (grave.plot == null || grave.plot == "") ? "Unknown" : grave.plot;
+
+                var content = "<h4>" + personName + "</h4>";
+                content += "<p>Date: " + deathDate + "</p>";
+                content += "<hr>";
+                content += "Section: " + sectionName + "<br>";
+                content += "Plot: " + plotNumber;
+
+                var infoBubble = infoWindow = new InfoBubble ({
+                    "content": content,
+                    borderWidth: 1,
+                    borderColor: "#000",
+                    arrowStyle: 0,
+                    disableAutoPan: true
+                });
+                // var infoBubble = new google.maps.InfoWindow({"content": content});
+                if (lastOpenInfoWindow != null) {
+                    lastOpenInfoWindow.close();
+                }
+                infoBubble.open(map, grave.marker);
+                lastOpenInfoWindow = infoBubble;
             }
             
             function addGrave(grave){
@@ -255,7 +296,7 @@
             }
             
             function loadData(){
-                $.get("/chicem/graves/data/json",function(data){
+                $.get("graves/data/json",function(data){
                     graveData = {};
                     var obj = eval(data);
                     if(obj.movies){
@@ -311,8 +352,19 @@
                 }
 
                 if(query && query.length >= 1){
-                    var url = "/chicem/graves/search/" + query + "?format=html";
-                    $("." + searchResultsClass).load(url);
+                    var url = "graves/search/" + query + "?format=html";
+                    $("." + searchResultsClass).load(url, function() {
+                        $(".grave_detail").hover(
+                            function () {
+                                $(this).addClass("ui_hover");
+                            },
+                            function () {
+                                $(this).removeClass("ui_hover");
+                            }
+                        );    
+                    });
+
+                    
                 }
             }
             

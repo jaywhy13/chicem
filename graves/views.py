@@ -34,7 +34,8 @@ def data(request, format=None):
                 'lon': grave.geom.centroid.x,
                 'plot' : grave.plot,
                 'died' : grave.get_year_of_death(),
-                'section' : grave.section
+                'date': grave.get_life_duration(),
+                'section' : grave.section,
             }
 
             results['movies'].append(new_movie)

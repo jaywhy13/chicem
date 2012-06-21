@@ -107,7 +107,7 @@
                 
                 
                 
-                $.get("graves/sections_coords",function(data){
+                $.get("/graves/sections_coords",function(data){
                     sectionsCoords = eval(data);
                     drawSections();
                 });
@@ -117,7 +117,7 @@
             
             
             function loadSections(){
-                $("." + sectionListClass).load("{{ SITE_URL }}graves/sections",function(){
+                $("." + sectionListClass).load("/graves/sections",function(){
                     // setup the filter container
                     $("." + sectionListClass + " ." + sectionClass).hover(function(){
                         var sectionName = $(this).children("." + sectionNameClass).html();
@@ -296,7 +296,7 @@
             }
             
             function loadData(){
-                $.get("{{ SITE_URL }}graves/data/json",function(data){
+                $.get("/graves/data/json",function(data){
                     graveData = {};
                     var obj = eval(data);
                     if(obj.movies){
@@ -352,7 +352,7 @@
                 }
 
                 if(query && query.length >= 1){
-                    var url = "graves/search/" + query + "?format=html";
+                    var url = "/graves/search/" + query + "?format=html";
                     $("." + searchResultsClass).load(url, function() {
                         $(".grave_detail").hover(
                             function () {

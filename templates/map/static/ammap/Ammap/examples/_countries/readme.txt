@@ -1,1 +1,0 @@
-Non Mercator: Japan, Nicaraqua, Spain1, USA

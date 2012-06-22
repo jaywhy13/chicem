@@ -50,7 +50,7 @@ def data(request, format=None):
         return render_to_response("graves/data.xml", locals())
 
 def sections(request):
-    sections = CemeteryBoundary.objects.all()
+    sections = CemeteryBoundary.objects.all().order_by('section')
     return render_to_response("graves/sections.html", locals())
 
 def sections_coords(request):
@@ -63,11 +63,12 @@ def sections_coords(request):
 
         section_obj = {
             "section_name" : section.section,
-            "coords" : coords
+            "coords" : coords,
+            "color": section.color,
             }
         sections.append(section_obj)
     sections_json = json.dumps(sections)
-    return HttpResponse(sections_json)
+    return HttpResponse(sections_json, mimetype='application/json')
     
 
 

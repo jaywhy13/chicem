@@ -6,10 +6,7 @@ from datetime import datetime, timedelta
 import os
 
 class Grave(models.Model):
-    other_id = models.IntegerField(primary_key=True)
-    ident = models.CharField(max_length=24)
-    id_no = models.FloatField()
-    id_no_1 = models.IntegerField()
+    # ident = models.CharField(max_length=24)
     section = models.CharField(max_length=254)
     row = models.CharField(max_length=254)
     plot = models.CharField(max_length=254)
@@ -19,23 +16,24 @@ class Grave(models.Model):
     first_name = models.CharField(max_length=254)
     surname = models.CharField(max_length=254)
     given_chin = models.CharField(max_length=254)
-    id_1 = models.IntegerField()
-    maiden_nam = models.CharField(max_length=254)
-    died = models.CharField(max_length=254)
-    age = models.CharField(max_length=254)
+    died = models.DateField(blank=True, null=True)
+    age = models.IntegerField()
     book = models.CharField(max_length=254)
-    note = models.CharField(max_length=254)
+    point_x = models.FloatField()
+    point_y = models.FloatField()
     geom = models.MultiPointField(srid=4326)
     objects = models.GeoManager()
 
+
     def get_deceased_date(self):
-        if not self.died:
-            return None
+        return self.died
+        # if not self.died:
+        #     return None
         
-        dt = parser.parse(self.died)
-        if dt:
-            return dt
-        return None
+        # dt = parser.parse(self.died)
+        # if dt:
+        #     return dt
+        # return None
 
     def get_year_of_death(self):
         dod = self.get_deceased_date()
@@ -46,7 +44,8 @@ class Grave(models.Model):
 
     def get_birth_date(self):
         if self.died and self.age:
-            dt = parser.parse(self.died)
+            # dt = parser.parse(self.died)
+            dt = self.died
             if dt:
                 birth_date = dt - timedelta(days=int(self.age) * 356)
                 return birth_date
@@ -80,9 +79,7 @@ class Grave(models.Model):
 
 # Auto-generated `LayerMapping` dictionary for Grave model
 grave_mapping = {
-    'ident' : 'IDENT',
-    'id_no' : 'ID_NO',
-    'id_no_1' : 'ID_No_1',
+    # 'ident' : 'IDENT',
     'section' : 'Section',
     'row' : 'Row',
     'plot' : 'Plot',
@@ -92,25 +89,23 @@ grave_mapping = {
     'first_name' : 'First_Name',
     'surname' : 'Surname',
     'given_chin' : 'Given_Chin',
-    'other_id' : 'ID',
-    'id_1' : 'ID_1',
-    'maiden_nam' : 'Maiden_Nam',
     'died' : 'Died',
     'age' : 'Age',
     'book' : 'Book',
-    'note' : 'Note',
+    'point_x' : 'POINT_X',
+    'point_y' : 'POINT_Y',
     'geom' : 'MULTIPOINT',
 }
 
-
 def load_graves(verbose=True):
-    shp_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data/Graves_WGS84.shp'))
+    # shp_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data/Graves_WGS84.shp'))
+    shp_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data/Merged_QC_files_84.shp'))
     lm = LayerMapping(Grave,shp_file, grave_mapping, transform=False, encoding='iso-8859-1')
     lm.save(strict=True, verbose=verbose)
 
 
 class CemeteryBoundary(models.Model):
-    other_id = models.IntegerField(primary_key=True)
+    # id = models.IntegerField()
     section = models.CharField(max_length=30)
     hotlink = models.CharField(max_length=100)
     area = models.FloatField()
@@ -118,14 +113,32 @@ class CemeteryBoundary(models.Model):
     acres = models.FloatField()
     hectares = models.FloatField()
     geom = models.MultiPolygonField(srid=4326)
+    color = models.CharField(max_length=10 ,blank=True, null=True)  # used to color the section on the map
     objects = models.GeoManager()
 
     def grave_count(self):
-        return Grave.objects.filter(geom__contained=self.geom).count()
+        return Grave.objects.filter(section=self.section).count()
+
+    @staticmethod
+    def load_colors():
+        """Loads colours from a colors.txt file in the data folder"""
+        file_url = os.path.abspath(os.path.dirname(__file__)) + "/data/colors.txt"
+        f = open(file_url, 'r')
+        
+        indx = 0
+        boundaries = CemeteryBoundary.objects.all()
+        for line in f:
+            if indx == len(boundaries):
+                break
+            current_boundary = boundaries[indx]
+            current_boundary.color = line[:-1]  # we dont want the \n character at the end of the line
+            current_boundary.save()
+            indx = indx + 1
+
 
 # Auto-generated `LayerMapping` dictionary for CemeteryBoundary model
 cemeteryboundary_mapping = {
-    'other_id' : 'ID',
+    # 'id' : 'ID',
     'section' : 'SECTION',
     'hotlink' : 'HOTLINK',
     'area' : 'AREA',
@@ -137,6 +150,6 @@ cemeteryboundary_mapping = {
 
 
 def load_boundaries(verbose=True):
-    shp_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data/cemetery_boundary_WGS84.shp'))
+    shp_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data/cemetery_84.shp'))
     lm = LayerMapping(CemeteryBoundary,shp_file, cemeteryboundary_mapping, transform=False, encoding='iso-8859-1')
     lm.save(strict=True, verbose=verbose)

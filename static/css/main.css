@@ -204,3 +204,14 @@ h1, h2, h3, h4, h5, h6, address {
 	border: 1px solid #527ace;
  }
 
+ /* Custom tooltip */
+ #customToolTip {
+ 	top: 100px;
+ 	border: 1px solid #666768;
+ 	border-radius: 4px;
+ 	background-color: white;
+ 	padding: 5px;
+ 	font-size: 9pt;
+ 	box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.15);
+ }
+

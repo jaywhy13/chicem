@@ -36,19 +36,23 @@
             var sectionListClass            =   "filterContainer";
             var sectionNameClass            =   "section_name";
             
+            // quick patch for the server url bug ... we should be sending this a var into the template, but it's late so ...
+            var server_url_prefix           =   "";
+            
             var unhighlightedPolygonOptions =   {
                 strokeWeight: 1,
                 // fillColor: '#846FD7'
                 fillColor: '#b8ce52',
                 strokeColor: '#fff',
-                fillOpacity: 1.0,
+                fillOpacity: 0.7,
                 strokeOpacity: 0.5
             };
             
             var highlightedPolygonOptions    =   {
                 strokeWeight: 2,
                 strokeOpacity: 1.0,
-                fillColor: '#527ace'
+                fillOpacity: 1.0
+                // fillColor: '#527ace'
             };
             
             var map;
@@ -57,6 +61,13 @@
             var sectionPolygonsByName       = {};
             var sectionsCoords              = null;
             var lastOpenInfoWindow          = null;
+
+            // Custom tooltip settings
+            var toolTipId                   = "#customToolTip";
+            var toolTipIsOn                 = false;
+            var toolTipTopOffset            = 10;
+            var toolTipLeftOffset           = 20;
+
 
             function initialize() {
                 var wHeight = $(window).height();
@@ -107,17 +118,20 @@
                 
                 
                 
-                $.get("/graves/sections_coords",function(data){
+                $.get(server_url_prefix + "/graves/sections_coords",function(data){
                     sectionsCoords = eval(data);
                     drawSections();
                 });
                 
                 loadSections();
+
+                // setup the custom 'tooltip' shown over sections'
+                setupToolTip();
             }
             
             
             function loadSections(){
-                $("." + sectionListClass).load("/graves/sections",function(){
+                $("." + sectionListClass).load(server_url_prefix + "/graves/sections",function(){
                     // setup the filter container
                     $("." + sectionListClass + " ." + sectionClass).hover(function(){
                         var sectionName = $(this).children("." + sectionNameClass).html();
@@ -151,14 +165,62 @@
                 });
                 
             }
-            
+
+            function setupToolTip() {
+                $("#" + mapContainerId).mousemove(function(event) {
+                    if (toolTipIsOn) {
+                        // console.log("mouse is at: " + event.pageX + ", " + event.pageY);
+                        $(toolTipId).css("top", event.pageY + toolTipTopOffset);
+                        $(toolTipId).css("left", event.pageX + toolTipLeftOffset);
+                    }
+                    
+                });
+            }
+
+            function showToolTip(sectionName) {
+                if (sectionName == "" || sectionName == null) {
+                    sectionName = "(No name)";
+                }
+                $(toolTipId).html(sectionName);
+                $(toolTipId).fadeIn('fast');
+                toolTipIsOn = true;
+            }
+
+            function hideToolTip() {
+                $(toolTipId).fadeOut('fast');
+                toolTipIsOn = false;
+            }
+
+            var polyFillOpts = {}
             
             function drawSections(){
                 for(var i = 0; i < sectionsCoords.length; i++){
                     var sectionObj = sectionsCoords[i];
                     var sectionName = sectionObj.section_name;
                     var coords = sectionObj.coords;
-                    var poly = new google.maps.Polygon(unhighlightedPolygonOptions);
+                    var color = sectionObj.color;
+
+                    // setup the colors
+                    var unhighlightedPolyOptsLocal =   {
+                        strokeWeight: 1,
+                        // fillColor: '#846FD7'
+                        fillColor: color,
+                        strokeColor: '#fff',
+                        fillOpacity: 0.7,
+                        strokeOpacity: 0.5
+                    };
+                    
+                    var highlightedPolyOptsLocal    =   {
+                        strokeWeight: 3,
+                        strokeOpacity: 1.0,
+                        fillOpacity: 1.0,
+                        fillColor: color
+                    };
+
+                    polyFillOpts[sectionName] = [unhighlightedPolyOptsLocal, highlightedPolyOptsLocal];
+
+                    // var poly = new google.maps.Polygon(unhighlightedPolygonOptions);
+                    var poly = new google.maps.Polygon(unhighlightedPolyOptsLocal);
                     var path = new google.maps.MVCArray;
                     poly.setPaths(new google.maps.MVCArray([path]));
                     for(var j = 0; j < coords.length; j++){
@@ -173,6 +235,9 @@
                     google.maps.event.addListener(poly,"mouseover",(function(){
                         var _sectionName = sectionName;
                         return function(){
+                            console.log("we are hovering over section: " + _sectionName);
+                            // need to show the 'tooltip'
+                            showToolTip(_sectionName);
                             highlightSectionByName(_sectionName);
                         }
                     })(sectionName));
@@ -180,6 +245,7 @@
                     google.maps.event.addListener(poly,"mouseout",(function(){
                         var _sectionName = sectionName;
                         return function(){
+                            hideToolTip();
                             unhighlightSectionByName(_sectionName);
                         }
                     })(sectionName));
@@ -188,12 +254,14 @@
             
             function highlightSectionByName(sectionName){
                 sectionPolygon = getSectionPolygonByName(sectionName);
-                sectionPolygon.setOptions(highlightedPolygonOptions);
+                // sectionPolygon.setOptions(highlightedPolygonOptions);
+                sectionPolygon.setOptions(polyFillOpts[sectionName][1]);
             }
             
             function unhighlightSectionByName(sectionName){
                 sectionPolygon = getSectionPolygonByName(sectionName);
-                sectionPolygon.setOptions(unhighlightedPolygonOptions);
+                // sectionPolygon.setOptions(unhighlightedPolygonOptions);
+                sectionPolygon.setOptions(polyFillOpts[sectionName][0]);
             }
             
             function getSectionPolygonByName(sectionName){
@@ -296,7 +364,7 @@
             }
             
             function loadData(){
-                $.get("/graves/data/json",function(data){
+                $.get(server_url_prefix + "/graves/data/json",function(data){
                     graveData = {};
                     var obj = eval(data);
                     if(obj.movies){
@@ -352,7 +420,7 @@
                 }
 
                 if(query && query.length >= 1){
-                    var url = "/graves/search/" + query + "?format=html";
+                    var url = server_url_prefix + "/graves/search/" + query + "?format=html";
                     $("." + searchResultsClass).load(url, function() {
                         $(".grave_detail").hover(
                             function () {
@@ -512,6 +580,9 @@
                 <center>Sections</center>
                 <center><img id="searchContainerDivider" src="{{ STATIC_PREFIX }}sidebar_divider.png"></center>
             </div>            
+        </div>
+        <div id="customToolTip" style="display: none; position: absolute;" >
+            Some random tooltip!!
         </div>
     </body>
 </html>
